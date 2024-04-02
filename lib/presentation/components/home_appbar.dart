@@ -1,6 +1,7 @@
+import 'package:cryptocurrency_chart_app/presentation/components/custom_icons.dart';
+import 'package:cryptocurrency_chart_app/presentation/components/textfields.dart';
 import 'package:cryptocurrency_chart_app/presentation/style/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({
@@ -15,49 +16,103 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      floating: true,
       backgroundColor: AppColors.appBarBackground,
-      toolbarHeight: 150,
+      toolbarHeight: 185,
       title: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          padding:
+              const EdgeInsets.only(left: 12, right: 12, bottom: 12, top: 25),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                    radius: 35,
-                    child: Container(
-                      color: Colors.red,
-                    ),
+                  Stack(
+                    children: [
+                      Positioned(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: AppColors.greyLight,
+                              width: 2,
+                            ),
+                          ),
+                          child: const CircleAvatar(
+                            radius: 21,
+                            backgroundColor: Colors.blue,
+                            backgroundImage:
+                                AssetImage("assets/images/user_avatar.jpg"),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Container(
+                          height: 13,
+                          width: 13,
+                          decoration: BoxDecoration(
+                            color: AppColors.red,
+                            borderRadius: BorderRadius.circular(13),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
+                  const SizedBox(width: 8),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Welcome Back"),
-                      Text(userName),
+                      const Text(
+                        "Welcome Back",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: AppColors.greyLight,
+                        ),
+                      ),
+                      Text(
+                        userName,
+                        style: const TextStyle(fontSize: 18),
+                      ),
                     ],
                   ),
+                  const Spacer(),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomIcon(
+                        backgroundColor: AppColors.background,
+                        iconColor: AppColors.greyLight,
+                        icon: Icons.wallet,
+                      ),
+                      SizedBox(width: 8),
+                      CustomIcon(
+                        backgroundColor: AppColors.background,
+                        iconColor: AppColors.greyLight,
+                        icon: Icons.qr_code_scanner_sharp,
+                      ),
+                    ],
+                  )
                 ],
               ),
-              
-              SizedBox(
-                height: 50,
+              const SizedBox(height: 18),
+              const SizedBox(
+                height: 48,
                 width: double.infinity,
-                child: TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.search),
-                    suffix: Container(
-                      decoration: BoxDecoration(
-                          color: AppColors.appBarBackground,
-                          borderRadius: BorderRadius.circular(16)),
-                      child: const Icon(Icons.tune),
-                    ),
-                  ),
+                child: HomeAppBarTextField(),
+              ),
+              const SizedBox(height: 12),
+              Container(
+                height: 4,
+                width: 50,
+                decoration: BoxDecoration(
+                  color: AppColors.appBarDash,
+                  borderRadius: BorderRadius.circular(6),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -66,5 +121,5 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size(double.infinity, 100);
+  Size get preferredSize => const Size(double.infinity, 180);
 }

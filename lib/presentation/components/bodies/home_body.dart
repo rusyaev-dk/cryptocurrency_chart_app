@@ -3,6 +3,9 @@ import 'package:cryptocurrency_chart_app/domain/blocs/home_bloc/home_bloc.dart';
 import 'package:cryptocurrency_chart_app/domain/models/crypto_model.dart';
 import 'package:cryptocurrency_chart_app/presentation/components/failure_widget.dart';
 import 'package:cryptocurrency_chart_app/presentation/components/home_appbar.dart';
+import 'package:cryptocurrency_chart_app/presentation/components/user_balance_card.dart';
+import 'package:cryptocurrency_chart_app/presentation/components/watchlist_tile.dart';
+import 'package:cryptocurrency_chart_app/presentation/style/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -40,7 +43,10 @@ class HomeBody extends StatelessWidget {
           }
 
           if (state is HomeLoadedState) {
-            return HomeContent(cryptoModels: state.cryptoModels);
+            return Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
+              child: HomeContent(cryptoModels: state.cryptoModels),
+            );
           }
 
           return HomeContent.loading(context);
@@ -66,17 +72,42 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget watchlist;
     if (cryptoModels.isEmpty) {
-      return const Center(
+      watchlist = const Center(
         child: Text("No data"),
+      );
+    } else {
+      watchlist = Expanded(
+        child: ListView.separated(
+          padding: EdgeInsets.zero,
+          itemBuilder: (context, i) {
+            return SizedBox(
+              height: 75,
+              child: WatchlistTile(cryptoModel: cryptoModels[i]),
+            );
+          },
+          separatorBuilder: (context, index) => const SizedBox(height: 8),
+          itemCount: cryptoModels.length,
+        ),
       );
     }
 
-    return ListView.builder(
-      itemBuilder: (context, i) {
-        return Text(cryptoModels[i].usdPrice.toString());
-      },
-      itemCount: cryptoModels.length,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const UserBalanceCard(),
+        const SizedBox(height: 20),
+        const Text(
+          "Watchlist",
+          style: TextStyle(
+            color: AppColors.white,
+            fontSize: 18,
+          ),
+        ),
+        const SizedBox(height: 12),
+        watchlist,
+      ],
     );
   }
 }

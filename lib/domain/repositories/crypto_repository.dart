@@ -37,16 +37,10 @@ class CryptoRepository {
       final Uri uri = Uri.parse(url);
 
       final response = await _appHttpClient.get(uri: uri);
-      
       final responseBody = json.decode(response.body);
-      
-      print(responseBody);
 
       List<CryptoModel> cryptoModels = [];
       for (String symbol in cryptoSymbols) {
-        print(symbol);
-        print(responseBody[symbol]);  
-        
         cryptoModels.add(
           CryptoModel.fromJson(responseBody[symbol], symbol),
         );

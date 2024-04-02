@@ -36,5 +36,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       case (null, final List<CryptoModel> resCryptoModels):
         return emit(HomeLoadedState(cryptoModels: resCryptoModels));
     }
+    // await Future.delayed(const Duration(milliseconds: 150));
+    // return emit(HomeLoadedState(cryptoModels: []));
   }
 }

@@ -9,9 +9,11 @@ abstract class AppColors {
 
   static const Color grey = Color(0xFF575B66);
   static const Color greyLight = Color(0xFFB9C1D9);
-  
+
   static const Color red = Color(0xFFDF2040);
   static const Color green = Color(0xFF40BF6A);
+  
+  static const Color watchlistTileBackground = Color(0xFF18181C);
 
   static List<Color> greenLinearGradient = [
     const Color(0xFF40BF6A).withOpacity(0.4),

@@ -120,7 +120,10 @@ class HomeAppBarWelcomeText extends StatelessWidget {
         ),
         Text(
           userName,
-          style: const TextStyle(fontSize: 18),
+          style: const TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+          ),
         ),
       ],
     );
@@ -135,16 +138,14 @@ class HomeAppBarActionsRow extends StatelessWidget {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CustomIcon(
+        CustomIconFromPNG(
           backgroundColor: AppColors.background,
-          iconColor: AppColors.greyLight,
-          icon: Icons.wallet,
+          iconPath: "assets/icons/wallet_icon.png",
         ),
         SizedBox(width: 8),
-        CustomIcon(
+        CustomIconFromPNG(
           backgroundColor: AppColors.background,
-          iconColor: AppColors.greyLight,
-          icon: Icons.qr_code_scanner_sharp,
+          iconPath: "assets/icons/scan_icon.png",
         ),
       ],
     );

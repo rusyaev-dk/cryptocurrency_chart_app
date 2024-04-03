@@ -74,17 +74,16 @@ class BranchesSwitcherScreen extends StatelessWidget {
           ),
           label: "",
         ),
-        
         BottomNavigationBarItem(
           icon: SizedBox(
             height: 27,
             width: 27,
-            child: Image.asset("assets/icons/chart_icon.png"),
+            child: Image.asset("assets/icons/activity_icon.png"),
           ),
           activeIcon: SizedBox(
             height: 27,
             width: 27,
-            child: Image.asset("assets/icons/chart_icon.png"),
+            child: Image.asset("assets/icons/activity_icon.png"),
           ),
           label: "",
         ),

@@ -27,3 +27,30 @@ class CustomIcon extends StatelessWidget {
     );
   }
 }
+
+class CustomIconFromPNG extends StatelessWidget {
+  const CustomIconFromPNG({
+    super.key,
+    required this.backgroundColor,
+    required this.iconPath,
+  });
+
+  final Color backgroundColor;
+  final String iconPath;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(8),
+      height: 40,
+      width: 40,
+      decoration: BoxDecoration(
+          color: backgroundColor, borderRadius: BorderRadius.circular(10)),
+      child: SizedBox(
+        height: 24,
+        width: 24,
+        child: Image.asset(iconPath),
+      ),
+    );
+  }
+}

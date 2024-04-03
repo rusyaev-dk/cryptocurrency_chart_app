@@ -1,7 +1,9 @@
+import 'package:cryptocurrency_chart_app/domain/models/crypto_model.dart';
 import 'package:cryptocurrency_chart_app/presentation/screens/auth_screen.dart';
 import 'package:cryptocurrency_chart_app/presentation/screens/branches_switcher_screen.dart';
-import 'package:cryptocurrency_chart_app/presentation/screens/chart_screen.dart';
+import 'package:cryptocurrency_chart_app/presentation/screens/crypto_activity_screen.dart';
 import 'package:cryptocurrency_chart_app/presentation/screens/home_screen.dart';
+import 'package:cryptocurrency_chart_app/presentation/screens/placeholder.dart';
 import 'package:cryptocurrency_chart_app/presentation/screens/route_error_screen.dart';
 import 'package:cryptocurrency_chart_app/presentation/screens/screen_loader.dart';
 import 'package:cryptocurrency_chart_app/routing/app_routes.dart';
@@ -24,18 +26,31 @@ class AppRouter {
         builder: (context, state, navigationShell) =>
             BranchesSwitcherScreen(navigationShell: navigationShell),
         branches: [
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: AppRoutes.home,
-              builder: (context, state) => const HomeScreen(),
-            ),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: AppRoutes.chart,
-              builder: (context, state) => const ChartScreen(),
-            ),
-          ]),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.home,
+                builder: (context, state) => const HomeScreen(),
+                routes: [
+                  GoRoute(
+                    path: "crypto_activity",
+                    builder: (context, state) {
+                      final extra = state.extra as CryptoModel;
+                      return CryptoActivityScreen(cryptoModel: extra);
+                    },
+                  )
+                ],
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: AppRoutes.activity,
+                builder: (context, state) => const PlaceholderScreen(),
+              ),
+            ],
+          ),
         ],
       ),
     ],

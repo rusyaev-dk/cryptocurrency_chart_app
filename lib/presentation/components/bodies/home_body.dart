@@ -2,12 +2,14 @@ import 'package:cryptocurrency_chart_app/data/exceptions.dart';
 import 'package:cryptocurrency_chart_app/domain/blocs/home_bloc/home_bloc.dart';
 import 'package:cryptocurrency_chart_app/domain/models/crypto_model.dart';
 import 'package:cryptocurrency_chart_app/presentation/components/failure_widget.dart';
-import 'package:cryptocurrency_chart_app/presentation/components/home_appbar_content.dart';
+import 'package:cryptocurrency_chart_app/presentation/components/appbars/home_appbar_content.dart';
 import 'package:cryptocurrency_chart_app/presentation/components/user_balance_card.dart';
 import 'package:cryptocurrency_chart_app/presentation/components/watchlist_tile.dart';
 import 'package:cryptocurrency_chart_app/presentation/style/app_colors.dart';
+import 'package:cryptocurrency_chart_app/routing/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -94,11 +96,17 @@ class HomeContent extends StatelessWidget {
     } else {
       watchlist = Expanded(
         child: ListView.separated(
-          padding: EdgeInsets.zero,
+          padding: const EdgeInsets.only(bottom: 80),
           itemBuilder: (context, i) {
-            return SizedBox(
-              height: 75,
-              child: WatchlistTile(cryptoModel: cryptoModels[i]),
+            return GestureDetector(
+              onTap: () => context.push(
+                "${AppRoutes.home}/${AppRoutes.cryptoActivity}",
+                extra: cryptoModels[i],
+              ),
+              child: SizedBox(
+                height: 75,
+                child: WatchlistTile(cryptoModel: cryptoModels[i]),
+              ),
             );
           },
           separatorBuilder: (context, index) => const SizedBox(height: 8),

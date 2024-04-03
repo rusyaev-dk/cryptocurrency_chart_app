@@ -11,7 +11,7 @@ class UserBalanceCard extends StatelessWidget {
       height: 165,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: AppColors.cardLinearGradient,
+          colors: AppColors.cardLinearGradientColors,
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         ),
@@ -75,7 +75,7 @@ class UserBalanceCard extends StatelessWidget {
               width: 300,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: AppColors.dividerLinearGradient,
+                  colors: AppColors.dividerLinearGradientColors,
                 ),
               ),
             ),
@@ -180,7 +180,7 @@ class CryptoPriceGraphic extends StatelessWidget {
             belowBarData: BarAreaData(
               show: true,
               gradient: LinearGradient(
-                  colors: AppColors.greenLinearGradient,
+                  colors: AppColors.greenLinearGradientColors,
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter),
             ),

@@ -1,5 +1,6 @@
 import 'package:cryptocurrency_chart_app/presentation/screens/auth_screen.dart';
 import 'package:cryptocurrency_chart_app/presentation/screens/branches_switcher_screen.dart';
+import 'package:cryptocurrency_chart_app/presentation/screens/chart_screen.dart';
 import 'package:cryptocurrency_chart_app/presentation/screens/home_screen.dart';
 import 'package:cryptocurrency_chart_app/presentation/screens/route_error_screen.dart';
 import 'package:cryptocurrency_chart_app/presentation/screens/screen_loader.dart';
@@ -31,8 +32,8 @@ class AppRouter {
           ]),
           StatefulShellBranch(routes: [
             GoRoute(
-              path: AppRoutes.account,
-              builder: (context, state) => const HomeScreen(),
+              path: AppRoutes.chart,
+              builder: (context, state) => const ChartScreen(),
             ),
           ]),
         ],

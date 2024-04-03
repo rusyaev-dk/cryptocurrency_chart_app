@@ -15,6 +15,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     "SOL",
     "XRP",
     "LTC",
+    "DOT",
+    "DOGE",
+    "AVAX",
+    "ADA"
   ];
 
   HomeBloc({required CryptoRepository cryptoRepository})

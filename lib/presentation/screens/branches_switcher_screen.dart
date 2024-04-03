@@ -1,3 +1,7 @@
+import 'dart:ui';
+
+import 'package:cryptocurrency_chart_app/presentation/components/custom_buttons.dart';
+import 'package:cryptocurrency_chart_app/presentation/style/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -10,18 +14,45 @@ class BranchesSwitcherScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: navigationShell,
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedFontSize: 12.0,
-        unselectedFontSize: 12.0,
-        showUnselectedLabels: true,
-        selectedItemColor: Theme.of(context).colorScheme.primary,
-        unselectedItemColor: Theme.of(context).colorScheme.secondary,
-        items: generateNavigationBarItems(context),
-        currentIndex: navigationShell.currentIndex,
-        onTap: (index) => navigationShell.goBranch(
-          index,
-          initialLocation: index == navigationShell.currentIndex,
+      extendBody: true,
+      floatingActionButton: CustomBottomNavBarButton(
+        height: 70,
+        width: 70,
+        onPressed: () {
+          print("PRESSED");
+        },
+        fontSize: 25,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: Container(
+        height: 80,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.background.withOpacity(0.3),
+              blurRadius: 10,
+            ),
+          ],
+        ),
+        child: ClipRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 9, sigmaY: 9),
+            child: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              backgroundColor: Colors.transparent, // Прозрачный фон
+              elevation: 0,
+              selectedItemColor: Theme.of(context).colorScheme.primary,
+              unselectedItemColor: Theme.of(context).colorScheme.secondary,
+              items: generateNavigationBarItems(context),
+              currentIndex: navigationShell.currentIndex,
+              onTap: (index) => navigationShell.goBranch(
+                index,
+                initialLocation: index == navigationShell.currentIndex,
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -31,24 +62,29 @@ class BranchesSwitcherScreen extends StatelessWidget {
           BuildContext context) =>
       [
         BottomNavigationBarItem(
-          icon: Icon(
-            Icons.home_outlined,
-            color: Theme.of(context).colorScheme.secondary,
+          icon: SizedBox(
+            height: 27,
+            width: 27,
+            child: Image.asset("assets/icons/home_icon.png"),
           ),
-          activeIcon: Icon(
-            Icons.home,
-            color: Theme.of(context).colorScheme.primary,
+          activeIcon: SizedBox(
+            height: 27,
+            width: 27,
+            child: Image.asset("assets/icons/home_icon.png"),
           ),
           label: "",
         ),
+        
         BottomNavigationBarItem(
-          icon: Icon(
-            Icons.auto_graph_outlined,
-            color: Theme.of(context).colorScheme.secondary,
+          icon: SizedBox(
+            height: 27,
+            width: 27,
+            child: Image.asset("assets/icons/chart_icon.png"),
           ),
-          activeIcon: Icon(
-            Icons.auto_graph,
-            color: Theme.of(context).colorScheme.primary,
+          activeIcon: SizedBox(
+            height: 27,
+            width: 27,
+            child: Image.asset("assets/icons/chart_icon.png"),
           ),
           label: "",
         ),

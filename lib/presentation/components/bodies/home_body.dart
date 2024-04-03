@@ -2,7 +2,7 @@ import 'package:cryptocurrency_chart_app/data/exceptions.dart';
 import 'package:cryptocurrency_chart_app/domain/blocs/home_bloc/home_bloc.dart';
 import 'package:cryptocurrency_chart_app/domain/models/crypto_model.dart';
 import 'package:cryptocurrency_chart_app/presentation/components/failure_widget.dart';
-import 'package:cryptocurrency_chart_app/presentation/components/home_appbar.dart';
+import 'package:cryptocurrency_chart_app/presentation/components/home_appbar_content.dart';
 import 'package:cryptocurrency_chart_app/presentation/components/user_balance_card.dart';
 import 'package:cryptocurrency_chart_app/presentation/components/watchlist_tile.dart';
 import 'package:cryptocurrency_chart_app/presentation/style/app_colors.dart';
@@ -14,11 +14,25 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String userName = "denis";
+
     return NestedScrollView(
       floatHeaderSlivers: true,
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return [
-          const HomeAppBar(userName: "Denis", userPhotoPath: "adsfas"),
+          SliverAppBar(
+            excludeHeaderSemantics: true,
+            elevation: 0,
+            pinned: true,
+            floating: true,
+            backgroundColor: AppColors.appBarBackground,
+            title: Padding(
+              padding: const EdgeInsets.only(
+                  left: 12, right: 12, top: 35, bottom: 12),
+              child: HomeAppBar(userName: userName),
+            ),
+            toolbarHeight: 175,
+          ),
         ];
       },
       body: BlocBuilder<HomeBloc, HomeState>(

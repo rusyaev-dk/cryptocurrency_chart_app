@@ -1,15 +1,13 @@
 import 'package:cryptocurrency_chart_app/data/exceptions.dart';
 import 'package:cryptocurrency_chart_app/domain/blocs/home_bloc/home_bloc.dart';
 import 'package:cryptocurrency_chart_app/domain/models/crypto_model.dart';
+import 'package:cryptocurrency_chart_app/presentation/components/crypto_watchlist.dart';
 import 'package:cryptocurrency_chart_app/presentation/components/failure_widget.dart';
 import 'package:cryptocurrency_chart_app/presentation/components/appbars/home_appbar_content.dart';
 import 'package:cryptocurrency_chart_app/presentation/components/user_balance_card.dart';
-import 'package:cryptocurrency_chart_app/presentation/components/watchlist_tile.dart';
 import 'package:cryptocurrency_chart_app/presentation/style/app_colors.dart';
-import 'package:cryptocurrency_chart_app/routing/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -23,7 +21,8 @@ class HomeBody extends StatelessWidget {
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return [
           SliverAppBar(
-            excludeHeaderSemantics: true,
+            // excludeHeaderSemantics: true,
+            stretch: false,
             elevation: 0,
             pinned: true,
             floating: true,
@@ -88,33 +87,6 @@ class HomeContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget watchlist;
-    if (cryptoModels.isEmpty) {
-      watchlist = const Center(
-        child: Text("No data"),
-      );
-    } else {
-      watchlist = Expanded(
-        child: ListView.separated(
-          padding: const EdgeInsets.only(bottom: 80),
-          itemBuilder: (context, i) {
-            return GestureDetector(
-              onTap: () => context.push(
-                "${AppRoutes.home}/${AppRoutes.cryptoActivity}",
-                extra: cryptoModels[i],
-              ),
-              child: SizedBox(
-                height: 75,
-                child: WatchlistTile(cryptoModel: cryptoModels[i]),
-              ),
-            );
-          },
-          separatorBuilder: (context, index) => const SizedBox(height: 8),
-          itemCount: cryptoModels.length,
-        ),
-      );
-    }
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -128,7 +100,7 @@ class HomeContent extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        watchlist,
+        CryptoWatchlist(cryptoModels: cryptoModels),
       ],
     );
   }

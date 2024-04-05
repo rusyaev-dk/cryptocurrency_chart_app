@@ -1,4 +1,6 @@
+import 'package:cryptocurrency_chart_app/routing/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class RouteErrorScreen extends StatelessWidget {
   const RouteErrorScreen({super.key});
@@ -16,11 +18,25 @@ class RouteErrorScreen extends StatelessWidget {
               size: 160,
             ),
             const SizedBox(height: 20),
-            const Text("Ooops, something went worng"),
+            const Text(
+              "Ooops, something went worng",
+              style: TextStyle(fontSize: 25),
+            ),
             const SizedBox(height: 20),
-            FloatingActionButton(
-              onPressed: () {},
-              child: const Text("Go home"),
+            SizedBox(
+              height: 40,
+              width: 80,
+              child: FloatingActionButton(
+                onPressed: () {
+                  context.go(AppRoutes.home);
+                },
+                child: const Center(
+                  child: Text(
+                    "Go home",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
             )
           ],
         ),

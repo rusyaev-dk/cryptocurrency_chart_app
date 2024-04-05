@@ -5,8 +5,9 @@ import 'package:cryptocurrency_chart_app/presentation/style/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class ActivityAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const ActivityAppBar({
+class CryptoActivityAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
+  const CryptoActivityAppBar({
     super.key,
     required this.cryptoModel,
   });

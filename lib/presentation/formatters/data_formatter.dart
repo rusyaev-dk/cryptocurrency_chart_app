@@ -18,7 +18,7 @@ class DataFormatter {
     return _cryptosMap[cryptoSymbol] ?? "Unknown";
   }
 
-  static String formatCryptoPrice({required double? cryptoPrice}) {
+  static String formatCryptoPrice({required dynamic cryptoPrice}) {
     if (cryptoPrice == null || cryptoPrice <= 0) return "0.0";
 
     List<String> parts = cryptoPrice.toString().split('.');

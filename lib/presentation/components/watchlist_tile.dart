@@ -1,5 +1,5 @@
 import 'package:cryptocurrency_chart_app/domain/models/crypto_model.dart';
-import 'package:cryptocurrency_chart_app/presentation/components/user_balance_card.dart';
+import 'package:cryptocurrency_chart_app/presentation/components/crypto_price_graphic.dart';
 import 'package:cryptocurrency_chart_app/presentation/formatters/data_formatter.dart';
 import 'package:cryptocurrency_chart_app/presentation/style/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +98,7 @@ class CryptoPriceWidget extends StatelessWidget {
     required this.price,
   });
 
-  final double price;
+  final dynamic price;
 
   @override
   Widget build(BuildContext context) {

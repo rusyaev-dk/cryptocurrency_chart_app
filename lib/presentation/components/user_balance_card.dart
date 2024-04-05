@@ -1,5 +1,5 @@
+import 'package:cryptocurrency_chart_app/presentation/components/crypto_price_graphic.dart';
 import 'package:cryptocurrency_chart_app/presentation/style/app_colors.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class UserBalanceCard extends StatelessWidget {
@@ -22,7 +22,7 @@ class UserBalanceCard extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
+            const Row(
               children: [
                 const Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -137,57 +137,3 @@ class UserBalanceCard extends StatelessWidget {
   }
 }
 
-class CryptoPriceGraphic extends StatelessWidget {
-  const CryptoPriceGraphic({
-    super.key,
-    this.borderData = false,
-    this.gridData = false,
-    this.titlesData = false,
-  });
-
-  final bool? borderData;
-  final bool? gridData;
-  final bool? titlesData;
-
-  @override
-  Widget build(BuildContext context) {
-    return LineChart(
-      LineChartData(
-        borderData: FlBorderData(show: borderData, border: Border()),
-        titlesData: FlTitlesData(show: titlesData!),
-        gridData: FlGridData(show: gridData!),
-        lineTouchData:
-            const LineTouchData(enabled: false), // нажатие на график отключила
-        minX: 0,
-        maxX: 6,
-        minY: 0,
-        maxY: 9,
-        lineBarsData: [
-          LineChartBarData(
-            spots: [
-              const FlSpot(0, 3),
-              const FlSpot(1, 1),
-              const FlSpot(2, 4),
-              const FlSpot(3, 2),
-              const FlSpot(4, 9),
-              const FlSpot(5, 3),
-              const FlSpot(6, 4),
-            ],
-            isCurved: true,
-            color: const Color(0xFF40BF6A),
-            barWidth: 2,
-            isStrokeCapRound: false,
-            belowBarData: BarAreaData(
-              show: true,
-              gradient: LinearGradient(
-                  colors: AppColors.greenLinearGradientColors,
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter),
-            ),
-            dotData: const FlDotData(show: false),
-          ),
-        ],
-      ),
-    );
-  }
-}

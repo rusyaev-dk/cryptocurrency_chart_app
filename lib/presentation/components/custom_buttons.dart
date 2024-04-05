@@ -50,3 +50,71 @@ class CustomBottomNavBarButton extends StatelessWidget {
     );
   }
 }
+
+class CustomColoredButton extends StatelessWidget {
+  const CustomColoredButton({
+    super.key,
+    required this.height,
+    required this.width,
+    required this.text,
+    required this.color,
+    this.onPressed,
+  });
+
+  final double height;
+  final double width;
+
+  final String text;
+  final Color color;
+  final void Function()? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(
+          child: Text(
+            text,
+            style: const TextStyle(
+              color: AppColors.white,
+              fontSize: 18,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ChartPeriodButton extends StatelessWidget {
+  const ChartPeriodButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+  });
+
+  final String text;
+  final void Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {},
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: 10,
+          fontWeight: FontWeight.w600,
+          color: AppColors.white,
+        ),
+      ),
+    );
+  }
+}

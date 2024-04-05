@@ -10,16 +10,13 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
-      create: (context) => CryptoRepository(),
-      child: BlocProvider(
-        create: (context) => HomeBloc(
-            cryptoRepository: RepositoryProvider.of<CryptoRepository>(context))
-          ..add(HomeLoadCryptoChartEvent()),
-        child: const Scaffold(
-          backgroundColor: AppColors.background,
-          body: HomeBody(),
-        ),
+    return BlocProvider(
+      create: (context) => HomeBloc(
+          cryptoRepository: RepositoryProvider.of<CryptoRepository>(context))
+        ..add(HomeLoadCryptoChartEvent()),
+      child: const Scaffold(
+        backgroundColor: AppColors.background,
+        body: HomeBody(),
       ),
     );
   }
